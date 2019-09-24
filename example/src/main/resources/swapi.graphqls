@@ -7,6 +7,8 @@ type Query {
     droid(id: String!): Droid
     # Find character by id
     character(id: String!): Character
+    #characterHit(id: String!): CharacterHit
+    characterHitPage(limit: Int!, offset: Int!): CharacterHitPage!
 }
 
 # One of the films in the Star Wars Trilogy
@@ -57,6 +59,17 @@ type Droid implements Character {
     appearsIn: [Episode]
     # The primary function of the droid
     primaryFunction: String
+}
+
+type CharacterHit {
+    score: Float!
+    source: Character!
+}
+
+type CharacterHitPage {
+    content: [CharacterHit!]!
+    totalElements: Long!,
+    numberOfElements: Int!,
 }
 
 type Mutation {
